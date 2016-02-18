@@ -22,8 +22,11 @@ function StartRound(){
 	menuScene.GetComponent(Animator).SetTrigger("DoMenuOut");
 
 	yield WaitForSeconds(.5);
-	playScene.SetActive(true);
 	playing = true;
+	playScene.SetActive(true);
+	player.SetActive(true);
+	player.SendMessage("StartRound");
+	scoreText.SetActive(true);
 	//menuScene.SetActive(false);
 }
 
@@ -32,7 +35,7 @@ function EndRound(){
 	playing = false;
 
 	yield WaitForSeconds(.3);
-	menuScene.GetComponent(Animator).SetTrigger("DoMenuReset");
+	menuScene.GetComponent(Animator).SetTrigger("DoResetMenu");
 	playScene.SetActive(false);
 }
 

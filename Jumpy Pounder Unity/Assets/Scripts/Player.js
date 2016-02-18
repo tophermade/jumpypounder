@@ -1,9 +1,10 @@
 ﻿#pragma strict
 
 var killZone 		: GameObject;
+var lumbergh 		: GameObject;
 
 
-var playing 		: boolean 		= true;
+var playing 		: boolean 		= false;
 var canJump 		: boolean 		= true;
 var inAir 			: boolean 		= false;
 
@@ -18,6 +19,11 @@ function OnCollisionEnter2D(coll: Collision2D) {
 
 			if(hitPoint.y < killZone.transform.position.y){
 				coll.transform.gameObject.SendMessage("KilledByPlayer");
+			} else {
+				EndRound();
+				#if UNITY_EDITOR
+					print("Round ending");
+				#endif
 			}
 		}
 	} else if(coll.transform.tag == "Ground"){
@@ -25,6 +31,18 @@ function OnCollisionEnter2D(coll: Collision2D) {
 		inAir = false;
 		GetComponent(Rigidbody2D).velocity = Vector2(0, 6);
 	}
+}
+
+
+
+function StartRound(){
+	playing = true;
+}
+
+
+function EndRound(){
+	playing = false;
+	lumbergh.SendMessage("EndRound");
 }
 
 

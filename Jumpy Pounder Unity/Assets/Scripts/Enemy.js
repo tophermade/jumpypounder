@@ -23,6 +23,9 @@ function KilledByPlayer(){
 	} else {
 		GetComponent(Rigidbody2D).velocity = Vector2(-3, -12);
 	}
+
+	yield WaitForSeconds(3);
+	Destroy(gameObject);
 }
 
 
