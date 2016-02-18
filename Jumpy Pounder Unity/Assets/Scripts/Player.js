@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var killZone 		: GameObject;
+
 
 var playing 		: boolean 		= true;
 var canJump 		: boolean 		= true;
@@ -13,6 +15,10 @@ function OnCollisionEnter2D(coll: Collision2D) {
 		for (var theHit: ContactPoint2D in coll.contacts) {
 			var hitPoint: Vector2 = theHit.point;
 			//Instantiate(explosion, new Vector3(hitPoint.x, hitPoint.y, 0), Quaternion.identity);
+
+			if(hitPoint.y < killZone.transform.position.y){
+				coll.transform.gameObject.SendMessage("KilledByPlayer");
+			}
 		}
 	} else if(coll.transform.tag == "Ground"){
 		canJump = true;
@@ -35,7 +41,7 @@ function Update () {
 			print("tapped");
 			canJump = false;
 			inAir = true;
-			GetComponent(Rigidbody2D).velocity = Vector2(0, 20);
+			GetComponent(Rigidbody2D).velocity = Vector2(0, 19.2);
 		} else if(!canJump && inAir){			
 			GetComponent(Rigidbody2D).velocity = Vector2(0, -16);
 		}
