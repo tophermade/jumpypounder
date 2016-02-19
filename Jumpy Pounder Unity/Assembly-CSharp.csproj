@@ -45,6 +45,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\NWZUtilities\CamShakeSimple.cs" />
      <Compile Include="Assets\NWZUtilities\LeaderboardsAgent.cs" />
      <Compile Include="Assets\NWZUtilities\MarketAgent.cs" />
      <Compile Include="Assets\VoxelBusters\Common\AssetStoreProductUtility\AssetStoreProduct\Demo\Scripts\DemoGUIWindow.cs" />

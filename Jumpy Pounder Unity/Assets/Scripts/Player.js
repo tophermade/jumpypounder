@@ -14,6 +14,7 @@ var kills 			: int 			= 0;
 
 
 function ComboKill(){
+	lumbergh.SendMessage("PlayKill");
 	var newCombo = Instantiate(comboEffect, Vector3(0,1.66,0), Quaternion.identity);
 	yield WaitForSeconds(2);
 	Destroy(newCombo);
@@ -21,7 +22,8 @@ function ComboKill(){
 
 
 function StandardKill(){
-
+	lumbergh.SendMessage("PlayKill");
+	lumbergh.SendMessage("TinyShake");
 }
 
 
@@ -72,6 +74,8 @@ function StartRound(){
 
 function EndRound(){
 	playing = false;
+	lumbergh.SendMessage("DoShake");
+	lumbergh.SendMessage("PlayHit");
 	lumbergh.SendMessage("EndRound");
 }
 
@@ -89,6 +93,7 @@ function Update () {
 			print("tapped");
 			canJump = false;
 			inAir = true;
+			lumbergh.SendMessage("PlayJump");
 			GetComponent(Rigidbody2D).velocity = Vector2(0, 19.2);
 		} else if(!canJump && inAir){			
 			GetComponent(Rigidbody2D).velocity = Vector2(0, -16);
