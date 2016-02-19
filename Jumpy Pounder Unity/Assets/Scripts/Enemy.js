@@ -1,5 +1,7 @@
 ﻿#pragma strict
 
+var deathEffect 	: GameObject;
+
 var goRight 		: boolean 		= true;
 var alive 			: boolean 		= true;
 
@@ -17,15 +19,16 @@ function KilledByPlayer(){
 
 	alive = false;
 	GetComponent(BoxCollider2D).isTrigger = true;
+	//var newEffect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+	//newEffect.transform.parent = gameObject.transform;
+	//gameObject.SetActive(false);
 
 	if(goRight){
-		GetComponent(Rigidbody2D).velocity = Vector2(3, -12);
+		GetComponent(Rigidbody2D).velocity = Vector2(3, -16);
 	} else {
-		GetComponent(Rigidbody2D).velocity = Vector2(-3, -12);
+		GetComponent(Rigidbody2D).velocity = Vector2(-3, -16);
 	}
-
-	yield WaitForSeconds(4);
-	Destroy(gameObject);
+	transform.localScale = Vector3(.35,.35,.35);
 }
 
 
