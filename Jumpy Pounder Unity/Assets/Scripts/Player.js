@@ -2,12 +2,27 @@
 
 var killZone 		: GameObject;
 var lumbergh 		: GameObject;
+var comboEffect 	: GameObject;
 
 
 var playing 		: boolean 		= false;
 var canJump 		: boolean 		= true;
 var inAir 			: boolean 		= false;
 
+var kills 			: int 			= 0;
+
+
+
+function ComboKill(){
+	var newCombo = Instantiate(comboEffect, Vector3(0,1.66,0), Quaternion.identity);
+	yield WaitForSeconds(2);
+	Destroy(newCombo);
+}
+
+
+function StandardKill(){
+
+}
 
 
 function OnCollisionEnter2D(coll: Collision2D) {
@@ -23,6 +38,14 @@ function OnCollisionEnter2D(coll: Collision2D) {
 					coll.transform.gameObject.SendMessage("KilledByPlayer");
 					givenPoint = true;
 					lumbergh.SendMessage("AddPoint");
+
+					if(kills > 0){
+						ComboKill();
+					} else {
+						StandardKill();
+					}
+
+					kills++;
 				} else {
 					EndRound();
 					#if UNITY_EDITOR
@@ -34,6 +57,7 @@ function OnCollisionEnter2D(coll: Collision2D) {
 	} else if(coll.transform.tag == "Ground"){
 		canJump = true;
 		inAir = false;
+		kills = 0;
 		GetComponent(Rigidbody2D).velocity = Vector2(0, 6);
 	}
 }
@@ -42,6 +66,7 @@ function OnCollisionEnter2D(coll: Collision2D) {
 
 function StartRound(){
 	playing = true;
+	kills = 0;
 }
 
 
