@@ -24,14 +24,22 @@ function KilledByPlayer(){
 		GetComponent(Rigidbody2D).velocity = Vector2(-3, -12);
 	}
 
-	yield WaitForSeconds(3);
+	yield WaitForSeconds(4);
 	Destroy(gameObject);
+}
+
+
+function EndOfLife(){
+
+	yield WaitForSeconds(9);
+	Destroy(gameObject);
+
 }
 
 
 
 function Start () {
-
+	EndOfLife();
 }
 
 
