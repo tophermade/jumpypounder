@@ -1,14 +1,24 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-
+Project("{061EC24A-AFA8-8F3A-9692-D4BEAB3AB07B}") = "Jumpy Pounder Unity", "Assembly-CSharp.csproj", "{1586589B-0B66-FDBC-D892-82F0E4E76DE2}"
+EndProject
+Project("{061EC24A-AFA8-8F3A-9692-D4BEAB3AB07B}") = "Jumpy Pounder Unity", "Assembly-CSharp-Editor.csproj", "{402E87C1-EADF-F15D-AA3D-B687D9695D60}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-
+		{1586589B-0B66-FDBC-D892-82F0E4E76DE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1586589B-0B66-FDBC-D892-82F0E4E76DE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1586589B-0B66-FDBC-D892-82F0E4E76DE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1586589B-0B66-FDBC-D892-82F0E4E76DE2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{402E87C1-EADF-F15D-AA3D-B687D9695D60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{402E87C1-EADF-F15D-AA3D-B687D9695D60}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{402E87C1-EADF-F15D-AA3D-B687D9695D60}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{402E87C1-EADF-F15D-AA3D-B687D9695D60}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
