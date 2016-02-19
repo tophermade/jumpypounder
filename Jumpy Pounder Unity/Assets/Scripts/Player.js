@@ -97,6 +97,7 @@ function Update () {
 			GetComponent(Rigidbody2D).velocity = Vector2(0, 19.2);
 		} else if(!canJump && inAir){			
 			GetComponent(Rigidbody2D).velocity = Vector2(0, -16);
+			lumbergh.SendMessage("PlayLanding");
 		}
 	}// mouse down & playing
 }
