@@ -12,9 +12,11 @@ var enemySpawns 	: GameObject[];
 var enemyParent 	: GameObject;
 var activeEnemies 	: GameObject[];
 
+var adFrequency 	: int 			= 3;
 var spawnDelay 		: float 		= .75;
 var lastSpawn 		: float 		= 0;
 var currentScore 	: float 		= 0;
+var playedRounds 	: int 			= 0;
 
 var playing 		: boolean 		= false;
 
@@ -37,6 +39,7 @@ function StartRound(){
 
 
 function EndRound(){
+	playedRounds++;
 	playing = false;
 
 	yield WaitForSeconds(.3);
@@ -58,6 +61,10 @@ function EndRound(){
 	if(theHigh < currentScore){
 		PlayerPrefs.SetInt("highscore", currentScore);
 		highScoreText.SetActive(true);
+	}
+
+	if(playedRounds % adFrequency == 0){
+		BroadcastMessage("ShowInterstertial");
 	}
 }
 

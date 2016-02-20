@@ -52,7 +52,6 @@ public class MarketAgent : MonoBehaviour {
 				Debug.Log("yay!");
 				BuyAdsButton.SetActive(false);
 				PlayerPrefs.SetString("ShowAds", "false");
-				Adverts.SendMessage("DisableAds");
 			}
 		}
 	}

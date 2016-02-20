@@ -3,7 +3,7 @@
 var killZone 		: GameObject;
 var lumbergh 		: GameObject;
 var comboEffect 	: GameObject;
-
+var deadEffect 		: GameObject;
 
 var playing 		: boolean 		= false;
 var canJump 		: boolean 		= true;
@@ -67,6 +67,7 @@ function OnCollisionEnter2D(coll: Collision2D) {
 
 
 function StartRound(){
+	gameObject.SetActive(true);
 	playing = true;
 	kills = 0;
 }
@@ -74,6 +75,8 @@ function StartRound(){
 
 function EndRound(){
 	playing = false;
+	gameObject.SetActive(false);
+	var newBody = Instantiate(deadEffect, transform.position, Quaternion.identity);
 	lumbergh.SendMessage("DoShake");
 	lumbergh.SendMessage("PlayHit");
 	lumbergh.SendMessage("EndRound");
