@@ -8,12 +8,14 @@ namespace VoxelBusters.NativePlugins.Nwzboards
 	public class LeaderboardsAgent : MonoBehaviour {
 
 		#if UNITY_ANDROID
-			private string  boardName = "CgkIuOWWrdUJEAIQAA";
+			//private string  boardName = "CgkIuOWWrdUJEAIQAA";
 		#endif
 
 		#if UNITY_IPHONE
-			private string boardName = "jumpypounder.leaders";
+			//private string boardName = "jumpypounder.leaders";
 		#endif
+
+		private string boardName = "scoreboard";
 
 		#pragma warning disable
 			[SerializeField, Header("Leaderboard Properties")]
