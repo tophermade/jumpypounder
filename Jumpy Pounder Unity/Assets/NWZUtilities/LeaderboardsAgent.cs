@@ -4,18 +4,13 @@ using VoxelBusters.Utility;
 
 namespace VoxelBusters.NativePlugins.Nwzboards
 {
+#if UNITY_IPHONE || UNITY_ANDROID
+
 	using Internal;
 	public class LeaderboardsAgent : MonoBehaviour {
 
-		#if UNITY_ANDROID
-			//private string  boardName = "CgkIuOWWrdUJEAIQAA";
-		#endif
+		public string boardID = "scoreboard";
 
-		#if UNITY_IPHONE
-			//private string boardName = "jumpypounder.leaders";
-		#endif
-
-		private string boardName = "scoreboard";
 
 		#pragma warning disable
 			[SerializeField, Header("Leaderboard Properties")]
@@ -23,19 +18,25 @@ namespace VoxelBusters.NativePlugins.Nwzboards
 			[SerializeField]
 		#pragma warning restore
 
-		void PostScore(int score){
+
+
+		void PostScore(int score){			
 		}
+
+
 
 		void ShowLeaderboards(){	
 			Debug.Log("ShowLeaderboards");
 			if(NPBinding.GameServices.LocalUser.IsAuthenticated){
-				NPBinding.GameServices.ShowLeaderboardUIWithGlobalID(boardName, m_timeScope, (string _error)=>{
+				NPBinding.GameServices.ShowLeaderboardUIWithGlobalID(boardID, m_timeScope, (string _error)=>{
 					Debug.Log("Closed leaderboard UI.");
 				});
 			} else {
-				DoLoginWithBoard();
+				DoLogin();
 			}
 		}
+
+
 
 		void DoLogin(){
 			NPBinding.GameServices.LocalUser.Authenticate((bool _success, string _error)=>{				
@@ -43,7 +44,6 @@ namespace VoxelBusters.NativePlugins.Nwzboards
 				{
 					Debug.Log("Sign-In Successfully");
 					Debug.Log("Local User Details : " + NPBinding.GameServices.LocalUser.ToString());
-					ShowLeaderboards();
 				}
 				else
 				{
@@ -51,6 +51,8 @@ namespace VoxelBusters.NativePlugins.Nwzboards
 				}
 			});
 		}
+
+
 
 		void DoLoginWithBoard(){
 			NPBinding.GameServices.LocalUser.Authenticate((bool _success, string _error)=>{				
@@ -67,14 +69,20 @@ namespace VoxelBusters.NativePlugins.Nwzboards
 			});
 		}
 
-		// Use this for initialization
-		void Start () {
-			DoLogin();
-		}
 		
-		// Update is called once per frame
+
+		void Start () {
+			if(!Application.isEditor){
+				DoLogin();
+			}			
+		}
+
+		
+		
 		void Update () {
 		
 		}
 	}
+
+#endif  
 }

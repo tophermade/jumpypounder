@@ -14,8 +14,8 @@ var kills 			: int 			= 0;
 
 
 function ComboKill(){
-	lumbergh.SendMessage("PlayKill");
 	var newCombo = Instantiate(comboEffect, Vector3(0,1.66,0), Quaternion.identity);
+	lumbergh.SendMessage("PlayKill");
 	yield WaitForSeconds(2);
 	Destroy(newCombo);
 }
